@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
-import BurgerIngredient from './../../components/Burger/BurgerIngredient/BurgerIngredient';
 
 const INGREDIENT_PRICES = {
   Ssalad: 0.5,

@@ -1,5 +1,5 @@
 .BuildControls {
-    width: 90%;
+    width: 80%;
     background: #cf8f2e;
     display: flex;
     flex-flow: column;
@@ -8,6 +8,7 @@
     box-shadow: 0 2px 1px #ccc;
     margin: auto;
     padding: 10px 0;
+    border-radius: 10px;
 }
 
 h2 {
