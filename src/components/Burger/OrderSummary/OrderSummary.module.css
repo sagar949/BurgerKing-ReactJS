@@ -1,0 +1,11 @@
+.Capitalize {
+    text-transform: capitalize;
+}
+
+.Summary li {
+    margin: 0.8rem 2rem;
+}
+
+.Summary h3 {
+    padding: 1rem 0;
+}
