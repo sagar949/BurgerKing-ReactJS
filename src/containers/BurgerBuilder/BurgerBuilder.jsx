@@ -29,31 +29,43 @@ class BurgerBuilder extends Component {
   };
 
   purchaseContinueHandler = () => {
-    this.setState({ loading: true });
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.totalPrice,
-      customer: {
-        name: 'Sagar',
-        address: {
-          street: 'Main Street',
-          zipCode: '500088',
-          country: 'India'
-        },
-        email: 'vidya.pamula@gmail.com'
-      },
-      deliveryMethod: 'fastest'
-    };
-
-    axios
-      .post('/orders.json', order)
-      .then(res => {
-        this.setState({ loading: false, purchasing: false });
-      })
-      .catch(err => {
-        this.setState({ loading: true, purchasing: false });
-        console.log(err);
-      });
+    // this.setState({ loading: true });
+    // const order = {
+    //   ingredients: this.state.ingredients,
+    //   price: this.state.totalPrice,
+    //   customer: {
+    //     name: 'Sagar',
+    //     address: {
+    //       street: 'Main Street',
+    //       zipCode: '500088',
+    //       country: 'India'
+    //     },
+    //     email: 'vidya.pamula@gmail.com'
+    //   },
+    //   deliveryMethod: 'fastest'
+    // };
+    // axios
+    //   .post('/orders.json', order)
+    //   .then(res => {
+    //     this.setState({ loading: false, purchasing: false });
+    //   })
+    //   .catch(err => {
+    //     this.setState({ loading: true, purchasing: false });
+    //     console.log(err);
+    //   });
+    const queryParams = [];
+    for (let item in this.state.ingredients) {
+      queryParams.push(
+        `${encodeURIComponent(item)}=${encodeURIComponent(
+          this.state.ingredients[item]
+        )}`
+      );
+    }
+    const queryString = queryParams.join('&');
+    this.props.history.push({
+      pathname: '/checkout',
+      search: '?' + queryString
+    });
   };
   purchaseHandler = () => {
     this.setState({ purchasing: true });
@@ -109,6 +121,8 @@ class BurgerBuilder extends Component {
   };
 
   componentDidMount = () => {
+    console.log(this.props);
+
     axios
       .get('https://burgerking-949.firebaseio.com/ingredients.json')
       .then(res => {
